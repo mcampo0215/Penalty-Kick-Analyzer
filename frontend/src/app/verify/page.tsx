@@ -3,6 +3,8 @@ import { Text } from "lucide-react"
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card";
 import {useRouter} from "next/navigation";
+import { TypingAnimation } from "@/components/magicui/typing-animation";
+import { ShineBorder } from "@/components/magicui/shine-border";
 
 export default function VerifyPage() {
     const router = useRouter();
@@ -46,19 +48,24 @@ export default function VerifyPage() {
     };
 
     return (
-        <div className = "flex items-center justify-center min-h-screen">
-            <Card className = "w-[600px]">
+        <div className = "flex items-center justify-center min-h-screen bg-gradient-to-b from-black via-zinc-900 to-black">
+            <ShineBorder shineColor={["#0d0d0d", "#595959", "#c0c0c0", "#f5f5f5"]}
+            borderWidth={3}
+            duration={6}
+            className="rounded-2xl">
+            <Card className = "w-[600px] bg-zinc-800">
                 <CardHeader>
-                    <CardTitle className = "text-center font-serif">Verify Your Account</CardTitle>
-                    <CardDescription className = "text-center">
-                        Use the verification link sent to your email.
+                    <CardTitle className = "text-center font-serif text-white">Verify Your Account</CardTitle>
+                    <CardDescription className = "text-center font-mono text-white">
+                        <TypingAnimation className = "text-sm font-mono" duration = {70}>Use the verification link sent to your email.</TypingAnimation>
                     </CardDescription>
                 </CardHeader>
                 <CardFooter className = "flex flex-col space-y-4 items-center">
-                    <Button onClick = {handleResend}>Resend Verification</Button>
-                    <Button variant = "secondary" onClick = {handleGoToLogin}>Already Verified? Log In</Button>
+                    <Button className = "transition-transform duration-100 active:scale-95 font-mono" onClick = {handleResend}>Resend Verification</Button>
+                    <Button className = "transition-transform duration-100 active:scale-95 font-mono" variant = "secondary" onClick = {handleGoToLogin}>Already Verified? Log In</Button>
                 </CardFooter>
             </Card>
+            </ShineBorder>
         </div>
     );
 }

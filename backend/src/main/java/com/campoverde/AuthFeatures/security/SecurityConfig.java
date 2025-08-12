@@ -2,6 +2,7 @@ package com.campoverde.AuthFeatures.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -36,6 +37,8 @@ public class SecurityConfig {
                 .cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/**").permitAll() //allow register/login
+                        .requestMatchers("/api/video/**").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/video/analyze").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form.disable()); //remove defaullt login form when using localhost link

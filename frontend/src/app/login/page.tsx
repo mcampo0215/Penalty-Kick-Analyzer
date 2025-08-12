@@ -45,7 +45,7 @@ import {useRouter} from "next/navigation";
 
             if(res.ok) {
                 alert("Succesfully logged in.");
-                router.push("/success");
+                router.push("/videoCapture");
             }
             else {
                 alert(result);

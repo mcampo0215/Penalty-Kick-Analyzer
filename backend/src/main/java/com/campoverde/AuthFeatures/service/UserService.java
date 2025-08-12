@@ -34,8 +34,10 @@ public class UserService {
         if(userRepository.findByEmail(request.getEmail()).isPresent()) {
             return "Email already in use";
         }
+
         String hashedPassword = passwordEncoder.encode(request.getPassword());
         String verificationToken = UUID.randomUUID().toString();
+
 
         User user = new User();
         user.setUsername(request.getUsername());
